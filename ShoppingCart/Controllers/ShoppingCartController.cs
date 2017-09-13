@@ -65,7 +65,7 @@ namespace ShoppingCart.Controllers
         [Route("api/GetCart")]
         public ShoppingCart GetCart()
         {
-            return null;//TODO HERE!
+            return HttpContext.Current.Session["sc"] as ShoppingCart;//TODO HERE!
         }
     }
 }

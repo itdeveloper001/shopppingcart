@@ -107,10 +107,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         function AddToCart(pid) {
             var xhr = new XMLHttpRequest();
             xhr.open('Get', 'api/AddToCart/'+pid);
-
+           
             xhr.onload = function () {
                 if (xhr.response && xhr.response != '') {
+                    var products = JSON.parse(xhr.response);
+                    var shopcart = document.getElementById('shopcart');
+                    shopcart.innerHTML = '';
 
+                    for (var i = 0; i < products.length; i++) {
+                        var sc_template = document.getElementById('sc_template').innerHTML;
+                        sc_template = sc_template.replace('{{Id}}', products[i].pid);
+                        shopcart.innerHTML += sc_template;
+                    }
                 }
             };
 

@@ -120,33 +120,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
 
 
-        
-            function GetCart() {
-                var xhr = new XMLHttpRequest();
-                xhr.open('Get', 'api/GetCart');
+    function GetCart() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('Get', 'api/GetCart');
 
-                xhr.onload = function () {
-                    if (xhr.response && xhr.response != '') {
-                        var carts = JSON.parse(xhr.response);
+        xhr.onload = function () {
+            if (xhr.response && xhr.response != '') {
+                var carts = JSON.parse(xhr.response);
+                var products = JSON.parse(xhr.response);
+                products = carts;
+                var sc_view = document.getElementById('sc_view');
 
-                        var shopcart = document.getElementById('shopcart');
+                sc_view.innerHTML = '';
+                var htmlcode = '';
 
-                        shopcart.innerHTML = '';
-                        var htmlcode = '';
-
-                        for (var i = 0; i < carts.length; i++) {
-                            var sc_template = document.getElementById('sc_template').innerHTML;
-                            sc_template = sc_template.replace('{{Name}}', carts[i].Name);
-                           
-                            sc_template = sc_template.replace('{{Id}}', carts[i].pid);
-                            shopcart.innerHTML += sc_template;
-                        }
-                    }
-                };
-
-                xhr.send(null);
-
+                for (var i = 0; i < carts.length; i++) {
+                    var sc_template = document.getElementById('sc_template').innerHTML;
+                    sc_template = sc_template.replace('{{Name}}', paroduct.carts[i].Name);
+                   
+                    sc_template = sc_template.replace('{{Id}}', paroduct.carts[i].pid);
+                    sc_view.innerHTML += sc_template;
+                }
             }
+        };
+
+        xhr.send(null);
+
+    }
+
+</script>
+            
 
      
     </script>
@@ -247,6 +250,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!-- //product-nav -->
 
+    <div id="sc_view">
+
+    </div>
 <!-- footer -->
 <div class="footer">
 	<div class="container">

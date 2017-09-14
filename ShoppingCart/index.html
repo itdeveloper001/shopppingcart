@@ -186,8 +186,9 @@
             xhr.open('Get', 'api/AddToCart/'+pid);
 
             xhr.onload = function () {
-                if (xhr.response && xhr.response != '') {
-                    
+                if (xhr.response != '') {
+                    alert('error');
+
                 }
             };
 

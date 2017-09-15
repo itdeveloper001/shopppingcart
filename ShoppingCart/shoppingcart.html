@@ -32,36 +32,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery.easing.min.js"></script>
 
     <script type="text/html" id="sc_template">
-
-        <td class="invert-closeb">
-            <div class="rem">
-                <div class="close1"> </div>
-            </div>
-            <script>
-$(document).ready(function (c) {
-    $('.close1').on('click', function (c) {
-        $('.rem1').fadeOut('slow', function (c) {
-            $('.rem1').remove();
-        });
-    });
-});
-            </script>
-        </td>
-    
-        <td class="invert-image"><a href="single.html"><img src="" alt=" " class="img-responsive" /></a></td>
-        <td class="invert">
-            <div class="quantity">
-                <div class="quantity-select">
-                    <div class="entry value-minus">&nbsp;</div>
-                    <div class="entry value"><span>1</span></div>
-                    <div class="entry value-plus active">&nbsp;</div>
+        <tr class="rem1">
+            <td class="invert-closeb">
+                <div class="rem">
+                    <div class="close1"> </div>
                 </div>
-            </div>
-        </td>
-        <td class="invert">{{Id}}</td>
-        <td class="invert">{{Name}}</td>
-        <td class="invert">${{Price}}</td>
-        
+
+            </td>
+
+            <td class="invert-image"><a href="single.html"><img src="images/{{Image}}" alt=" " class="img-responsive" /></a></td>
+            <td class="invert">
+                <div class="quantity">
+                    <div class="quantity-select">
+                        <div class="entry value-minus">&nbsp;</div>
+                        <div class="entry value"><span>1</span></div>
+                        <div class="entry value-plus active">&nbsp;</div>
+                    </div>
+                </div>
+            </td>
+            <td class="invert">{{Id}}</td>
+            <td class="invert">{{Name}}</td>
+            <td class="invert">${{Price}}</td>
+
 
     </script>
 
@@ -82,12 +74,12 @@ $(document).ready(function (c) {
                     cart.innerHTML = '';
                     var htmlcode = '';
 
-                    for (var i = 0; i < carts.length; i++) {
+                    for (var i = 0; i < carts.Items.length; i++) {
                         var sc_template = document.getElementById('sc_template').innerHTML;
-                        sc_template = sc_template.replace('{{Name}}', carts[i].Name);
-                        sc_template = sc_template.replace('{{Image}}', carts[i].Imageurl);
-                        sc_template = sc_template.replace('{{Price}}', carts[i].Price);
-                        sc_template = sc_template.replace('{{Id}}', carts[i].pid);
+                        sc_template = sc_template.replace('{{Name}}', carts.Items[i].Product.Name);
+                        sc_template = sc_template.replace('{{Image}}', carts.Items[i].Product.Imageurl);
+                        sc_template = sc_template.replace('{{Price}}', carts.Items[i].Product.Price);
+                        sc_template = sc_template.replace('{{Id}}', carts.Items[i].Product.pid);
                         cart.innerHTML += sc_template;
                     }
                 }
@@ -164,8 +156,9 @@ $(document).ready(function (c) {
     <div class="checkout">
         <div class="container">
             <h3>My Shopping Cart</h3>
+            
             <div class="table-responsive checkout-right animated wow slideInUp" data-wow-delay=".5s">
-                <table class="timetable_sub">
+                <table  class="timetable_sub">
                     <thead>
                         <tr>
                             <th>Remove</th>
@@ -175,55 +168,52 @@ $(document).ready(function (c) {
                             <th>Price</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr id="cart" class="rem1">
-                            <!--<td class="invert-closeb">
-                                <div class="rem">
-                                    <div class="close1"> </div>
+                   <tbody id="cart"></tbody>
+                        <!--<td class="invert-closeb">
+                            <div class="rem">
+                                <div class="close1"> </div>
+                            </div>
+                            <script>
+$(document).ready(function (c) {
+    $('.close1').on('click', function (c) {
+        $('.rem1').fadeOut('slow', function (c) {
+            $('.rem1').remove();
+        });
+    });
+});
+                            </script>
+                        </td>
+                        <td class="invert-image"><a href="single.html"><img src="images/w4.png" alt=" " class="img-responsive" /></a></td>
+                        <td class="invert">
+                            <div class="quantity">
+                                <div class="quantity-select">
+                                    <div class="entry value-minus">&nbsp;</div>
+                                    <div class="entry value"><span>1</span></div>
+                                    <div class="entry value-plus active">&nbsp;</div>
                                 </div>
-                                <script>$(document).ready(function(c) {
-                                    $('.close1').on('click', function(c){
-                                        $('.rem1').fadeOut('slow', function(c){
-                                            $('.rem1').remove();
-                                        });
-                                        });
-                                    });
-                               </script>
-                            </td>
-                            <td class="invert-image"><a href="single.html"><img src="images/w4.png" alt=" " class="img-responsive" /></a></td>
-                            <td class="invert">
-                                 <div class="quantity">
-                                    <div class="quantity-select">
-                                        <div class="entry value-minus">&nbsp;</div>
-                                        <div class="entry value"><span>1</span></div>
-                                        <div class="entry value-plus active">&nbsp;</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="invert">Hand Bag</td>
-                            <td class="invert">$45.99</td>-->
-                        </tr>
-                    </tbody>
+                            </div>
+                        </td>
+                        <td class="invert">Hand Bag</td>
+                        <td class="invert">$45.99</td>-->
+                    </tr>
+                    
+                    
+                    
 
+                    <!--quantity-->
+                    <script>
+                        $('.value-plus').on('click', function () {
+                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) + 1;
+                            divUpd.text(newVal);
+                        });
 
+                        $('.value-minus').on('click', function () {
+                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) - 1;
+                            if (newVal >= 1) divUpd.text(newVal);
+                        });
+                    </script>
+                    <!--quantity-->
                 </table>
-            </div>
-            <div class="checkout-left">
-
-                <div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
-                    <a href="mens.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back To Shopping</a>
-                </div>
-                <div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
-                    <h4>Shopping basket</h4>
-                    <ul>
-                        <li>Hand Bag <i>-</i> <span>$45.99</span></li>
-                        <li>Watches <i>-</i> <span>$45.99</span></li>
-                        <li>Sandals <i>-</i> <span>$45.99</span></li>
-                        <li>Wedges <i>-</i> <span>$45.99</span></li>
-                        <li>Total <i>-</i> <span>$183.96</span></li>
-                    </ul>
-                </div>
-                <div class="clearfix"> </div>
             </div>
         </div>
     </div>

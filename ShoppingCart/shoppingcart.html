@@ -30,17 +30,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
 <script src="js/jquery.easing.min.js"></script>
+ 
 
     <script type="text/html" id="sc_template">
         <tr class="rem1">
             <td class="invert-closeb">
                 <div class="rem">
-                    <div class="close1"> </div>
+                    <div class="close2"> </div>
                 </div>
+              
+               
 
             </td>
 
-            <td class="invert-image"><a href="single.html"><img src="images/{{Image}}" alt=" " class="img-responsive" /></a></td>
+            <td class="invert-image"><a href="#"><img src="images/{{Image}}" alt=" " class="img-responsive" /></a></td>
             <td class="invert">
                 <div class="quantity">
                     <div class="quantity-select">
@@ -50,9 +53,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </div>
             </td>
-            <td class="invert">{{Id}}</td>
+           
             <td class="invert">{{Name}}</td>
+
             <td class="invert">${{Price}}</td>
+           
 
 
     </script>
@@ -68,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             xhr.onload = function () {
                 if (xhr.response && xhr.response != '') {
                     var carts = JSON.parse(xhr.response);
-
+                  
                     var cart = document.getElementById('cart');
 
                     cart.innerHTML = '';
@@ -80,6 +85,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         sc_template = sc_template.replace('{{Image}}', carts.Items[i].Product.Imageurl);
                         sc_template = sc_template.replace('{{Price}}', carts.Items[i].Product.Price);
                         sc_template = sc_template.replace('{{Id}}', carts.Items[i].Product.pid);
+                       
+                        
+
+                       
                         cart.innerHTML += sc_template;
                     }
                 }
@@ -124,6 +133,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li class="active menu__item menu__item--current"><a class="menu__link" href="index1.html">Home <span class="sr-only">(current)</span></a></li>
 
                                 <li class=" menu__item"><a class="menu__link" href="shoppingcart.html"> Shopping Cart</a></li>
+                                <li class=" menu__item"><a class="menu__link" href="checkout.html">Checkout</a></li>
 
                             </ul>
                         </div>
@@ -141,6 +151,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         </h3>
                     </a>
+                   
                     <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
 
                 </div>
@@ -168,51 +179,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <th>Price</th>
                         </tr>
                     </thead>
-                   <tbody id="cart"></tbody>
-                        <!--<td class="invert-closeb">
-                            <div class="rem">
-                                <div class="close1"> </div>
-                            </div>
-                            <script>
-$(document).ready(function (c) {
-    $('.close1').on('click', function (c) {
-        $('.rem1').fadeOut('slow', function (c) {
-            $('.rem1').remove();
-        });
-    });
-});
-                            </script>
-                        </td>
-                        <td class="invert-image"><a href="single.html"><img src="images/w4.png" alt=" " class="img-responsive" /></a></td>
-                        <td class="invert">
-                            <div class="quantity">
-                                <div class="quantity-select">
-                                    <div class="entry value-minus">&nbsp;</div>
-                                    <div class="entry value"><span>1</span></div>
-                                    <div class="entry value-plus active">&nbsp;</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="invert">Hand Bag</td>
-                        <td class="invert">$45.99</td>-->
-                    </tr>
-                    
-                    
-                    
 
-                    <!--quantity-->
-                    <script>
-                        $('.value-plus').on('click', function () {
-                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) + 1;
-                            divUpd.text(newVal);
-                        });
+                   <tbody id="cart">
 
-                        $('.value-minus').on('click', function () {
-                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10) - 1;
-                            if (newVal >= 1) divUpd.text(newVal);
-                        });
-                    </script>
-                    <!--quantity-->
+                   </tbody>
+                
+                    
                 </table>
             </div>
         </div>

@@ -32,14 +32,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery.easing.min.js"></script>
  
 
-    <script type="text/html" id="sc_template">
-        <tr class="rem1">
+    <script type="text/html" id="sc_template" >
+        <tr class="rem4" >
+
             <td class="invert-closeb">
                 <div class="rem">
-                    <div class="close2"> </div>
+                    <div class="close4"></div>
+
                 </div>
-              
-               
+
+
 
             </td>
 
@@ -47,25 +49,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <td class="invert">
                 <div class="quantity">
                     <div class="quantity-select">
-                        <div class="entry value-minus">&nbsp;</div>
-                        <div class="entry value"><span>1</span></div>
-                        <div class="entry value-plus active">&nbsp;</div>
+
+                        <input type="text" onkeyup="calc()" class="entry value" id="qty" />
+
                     </div>
                 </div>
             </td>
-           
+
             <td class="invert">{{Name}}</td>
 
-            <td class="invert">${{Price}}</td>
-           
+            <td class="invert">
+                <div class="quantity">
+                    <div class="quantity-select">
+
+                        <input type="text" id="price" value="{{Price}}" onkeyup="calc(this)" />
+
+                    </div>
+                </div>
+            </td>
+            <td class="invert">
+                <div class="quantity">
+                    <div class="quantity-select">
+                        <input type="text" id="total" value="0" />
+                    </div>
+                </div>
+            </td>
 
 
-    </script>
-
+</script>
+    
 
 
     <script>
+   
+        function deleteit(el) {
+            el.parentElement.parentElement.remove();
+        }
 
+        function calc() {
+
+            var qty = document.getElementById('qty').value;
+            var price = document.getElementById('price').value;
+            var total = document.getElementById('total').value;
+
+            document.getElementById('total').value = (parseInt(qty) * parseInt(price));
+
+        }
+       
+           
+        
+        
         function GetCart() {
             var xhr = new XMLHttpRequest();
             xhr.open('Get', 'api/GetCart');
@@ -177,6 +210,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <th>Quantity</th>
                             <th>Product Name</th>
                             <th>Price</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
 

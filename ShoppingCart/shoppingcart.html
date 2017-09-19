@@ -33,37 +33,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  
 
     <script type="text/html" id="sc_template" >
-        <tr class="rem4" >
+        <tr class="rem4"  >
 
             <td class="invert-closeb">
                 <div class="rem">
                     <div class="close4"></div>
-
                 </div>
-
-
-
             </td>
-
             <td class="invert-image"><a href="#"><img src="images/{{Image}}" alt=" " class="img-responsive" /></a></td>
             <td class="invert">
                 <div class="quantity">
                     <div class="quantity-select">
 
-                        <input type="text" onkeyup="calc()" class="entry value" id="qty" />
-
+                        <input type="text" class="entry value" id="qty" hidden style="display:none"/>
+                        <input type="text" onfocus="calc()" class="entry value" value="{{qty}}" id="item_qty" autofocus/>
+                     
                     </div>
                 </div>
             </td>
-
             <td class="invert">{{Name}}</td>
-
             <td class="invert">
                 <div class="quantity">
                     <div class="quantity-select">
-
                         <input type="text" id="price" value="{{Price}}" onkeyup="calc(this)" />
-
                     </div>
                 </div>
             </td>
@@ -74,12 +66,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </div>
             </td>
-
-
 </script>
-    
-
-
+   
     <script>
    
         function deleteit(el) {
@@ -88,17 +76,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         function calc() {
 
-            var qty = document.getElementById('qty').value;
+            var item_qty = document.getElementById('item_qty').value;
             var price = document.getElementById('price').value;
             var total = document.getElementById('total').value;
 
-            document.getElementById('total').value = (parseInt(qty) * parseInt(price));
+            document.getElementById('total').value = (parseInt(item_qty) * parseInt(price));
 
         }
        
-           
-        
-        
+             
         function GetCart() {
             var xhr = new XMLHttpRequest();
             xhr.open('Get', 'api/GetCart');
@@ -118,10 +104,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         sc_template = sc_template.replace('{{Image}}', carts.Items[i].Product.Imageurl);
                         sc_template = sc_template.replace('{{Price}}', carts.Items[i].Product.Price);
                         sc_template = sc_template.replace('{{Id}}', carts.Items[i].Product.pid);
-                       
-                        
-
-                       
+                        sc_template = sc_template.replace('{{qty}}', carts.Items[i].Count);
                         cart.innerHTML += sc_template;
                     }
                 }

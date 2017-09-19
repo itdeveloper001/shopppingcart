@@ -56,16 +56,32 @@ namespace ShoppingCart.Controllers
             item.Count = 1;
             item.Product = prod;
 
-            sc.Items.Add(item);
+            var product = sc.Items.Find(i => i.Product.Id == Id);
+            if (product != null)
+            {
+                product.Count++;
+
+            }
+            else
+            {
+                sc.Items.Add(item);
+            }
+           
 
             HttpContext.Current.Session["sc"] = sc;
+           
         }
 
         [HttpGet]
         [Route("api/GetCart")]
         public ShoppingCart GetCart()
+
         {
-            return HttpContext.Current.Session["sc"] as ShoppingCart;//TODO HERE!
+            
+           
+            return HttpContext.Current.Session["sc"] as ShoppingCart;
+           
+            //TODO HERE!
         }
     }
 }

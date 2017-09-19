@@ -64,19 +64,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
 
     </script>
-    <script type="text/html" id="sc_template">
-        <div class="col-md-4">
-            {{Name}}
-        </div>
-        <div class="col-md-4">
-            <input type="number" name="quantity" value="" />
-        </div>
-        <div class="col-md-4">
-            <input type="button" name="btn_remove" value="Remove" />
-        </div>
-
-
-    </script>
+   
     <script>
         function GetProducts() {
             var xhr = new XMLHttpRequest();
@@ -120,33 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
 
 
-    function GetCart() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('Get', 'api/GetCart');
-
-        xhr.onload = function () {
-            if (xhr.response && xhr.response != '') {
-                var carts = JSON.parse(xhr.response);
-                var products = JSON.parse(xhr.response);
-                products = carts;
-                var sc_view = document.getElementById('sc_view');
-
-                sc_view.innerHTML = '';
-                var htmlcode = '';
-
-                for (var i = 0; i < carts.length; i++) {
-                    var sc_template = document.getElementById('sc_template').innerHTML;
-                    sc_template = sc_template.replace('{{Name}}', paroduct.carts[i].Name);
-                   
-                    sc_template = sc_template.replace('{{Id}}', paroduct.carts[i].pid);
-                    sc_view.innerHTML += sc_template;
-                }
-            }
-        };
-
-        xhr.send(null);
-
-    }
+   
 
 </script>
             
